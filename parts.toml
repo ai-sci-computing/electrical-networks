@@ -1,0 +1,43 @@
+# The parts of the series and what each consists of. The order of the tables is the order of the
+# parts: a module may import modules of its own part and of earlier parts only
+# (tests/test_parts.py). `release` names the public release a part goes out with; a release
+# publishes its parts and everything released before it. The tests of a part lie in tests/<part>,
+# its studies (the scripts behind its posts) in studies/<part>/<study>. `data` are the datasets of
+# scripts/fetch_data.py that the part needs beyond those of the parts before it.
+
+[foundations]
+release = "aggregation"
+posts = ["01_foundations_equations", "02_foundations_problems"]
+modules = ["network", "admittance", "examples", "pypsa_io", "graph", "powerflow"]
+studies = ["setup"]
+data = ["matpower", "bukhsh", "osm", "naturalearth"]
+
+[foundations.urls]
+01_foundations_equations = "https://coding.wirbellinie.de/foundations-i-equations-of-power-grids/"
+02_foundations_problems = "https://coding.wirbellinie.de/foundations-ii-problems-of-power-grids/"
+
+[aggregation]
+release = "aggregation"
+posts = ["03_aggregation_theory", "04_aggregation_europe", "05_aggregation_sparse"]
+modules = ["cycles", "spectral", "kron", "rei", "sparsify", "reweight"]
+studies = ["theory", "european_grid"]
+data = []
+
+[aggregation.urls]
+03_aggregation_theory = "https://coding.wirbellinie.de/aggregation-i-clusters-as-nodes/"
+04_aggregation_europe = "https://coding.wirbellinie.de/aggregation-ii-cuts-of-the-european-grid/"
+05_aggregation_sparse = "https://coding.wirbellinie.de/aggregation-iii-sparse-reductions/"
+
+[statics]
+release = "statics"
+posts = ["06_statics_solutions", "07_statics_limit", "08_statics_linear_flow", "09_statics_opf"]
+modules = ["continuation", "limits", "security", "opf", "equilibria"]
+studies = ["solution_set", "voltage_limit", "linear_flow", "optimal_power_flow"]
+data = ["psat", "matpower_code"]
+
+[dynamics]
+release = "dynamics"
+posts = ["10_dynamics_transient", "11_dynamics_coherency", "12_dynamics_frequency", "13_dynamics_cascades"]
+modules = ["dynamics", "machines", "andes_io", "coherency", "frequency", "cascade"]
+studies = ["transient", "coherency", "frequency", "cascades"]
+data = ["powerplants"]

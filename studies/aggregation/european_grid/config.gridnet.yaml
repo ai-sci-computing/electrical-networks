@@ -1,0 +1,9 @@
+# PyPSA-Eur configuration override for the comparison in this directory: PyPSA-Eur's own simplification and
+# k-means clustering of the OSM base network, all countries, 128 clusters.
+run:
+  name: gridnet
+clustering:
+  mode: busmap
+  cluster_network:
+    n_clusters: 128
+    algorithm: kmeans

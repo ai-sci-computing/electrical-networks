@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gridnet"
+version = "0.0.1"
+description = "Electrical networks as weighted graphs: Laplacians and reductions, power flow and continuation, optimal power flow, contingency screening, cascades, and the dynamics of transient stability, coherency and frequency"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { file = "LICENSE" }
+authors = [{ name = "fjk", email = "f.j.knoeppel@gmail.com" }]
+dependencies = [
+  "numpy",
+  "scipy",
+  "networkx",
+  "matplotlib",
+  "pandas",
+]
+
+[project.optional-dependencies]
+power = ["pandapower", "pypsa==1.2.4", "pypower==5.1.21", "andes"]   # pypower pinned: tests/pypower_fixes.py corrects its source text; pypsa: gridnet.pypsa_io follows its 1.2 conventions
+ml = ["scikit-learn"]
+maps = ["geopandas", "shapely", "xarray"]   # xarray: the project scripts that read PyPSA-Eur's NetCDF outputs
+opf = ["cvxpy", "clarabel", "scs", "highspy"]
+coarsening = ["pygsp", "sortedcontainers"]   # plus graph-coarsening from github.com/loukasa/graph-coarsening (not on PyPI)
+dev = ["pytest", "pytest-cov", "ruff"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = ["data(*datasets): the test reads these datasets, fetched by scripts/fetch_data.py"]
+filterwarnings = ["ignore::DeprecationWarning:pandapower"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["studies/**/third_party"]   # foreign code, kept as published
+
+[tool.ruff.lint.per-file-ignores]
+"studies/**" = ["SIM115"]   # a study script keeps its log file open for the whole run and closes it by ending

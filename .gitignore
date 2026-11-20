@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Julia
+studies/*/*/julia/Manifest.toml
+
+# Bulk data and build outputs (data are fetched by scripts/fetch_data.py, see README.md)
+data/raw/
+data/ACTIVSg2000/*.tsb
+studies/*/*/results/
+studies/*/*/cache/
+
+# macOS / editors
+.DS_Store
+.vscode/
+.idea/
+
+# editor vault settings
+.obsidian/
+
+# PyPSA-Eur checkout, its environment and caches (re-created from the pinned commit; not part of the repository)
+/external/
